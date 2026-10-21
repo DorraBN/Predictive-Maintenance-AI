@@ -16,7 +16,6 @@ from tensorflow.keras.layers import Dense
 import joblib
 import os
 
-# Load data
 df = load_data()
 
 x_train, x_test, y_train, y_test = train_test_split(
@@ -26,13 +25,10 @@ x_train, x_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-# Create models directory
+
 os.makedirs("models", exist_ok=True)
 
-# ---------------------------
 # Logistic Regression
-# ---------------------------
-
 model_reg = LogisticRegression(max_iter=1000)
 model_reg.fit(x_train, y_train)
 
@@ -61,9 +57,8 @@ joblib.dump({
 }, "models/metrics_reg.joblib")
 joblib.dump(model_reg, "models/model_reg.joblib")
 
-# ---------------------------
 # Deep Learning
-# ---------------------------
+
 
 model_dl = Sequential([
     Dense(32, activation="relu", input_shape=(x_train.shape[1],)),

@@ -12,7 +12,6 @@ st.set_page_config(
 
 st.title("Predictive Maintenance - Logistic Regression")
 
-# Load trained model
 MODEL_PATH = "models/model_reg.joblib"
 
 if not os.path.exists(MODEL_PATH):
@@ -21,7 +20,6 @@ if not os.path.exists(MODEL_PATH):
 
 model = joblib.load(MODEL_PATH)
 
-# Load dataset
 @st.cache_data
 def get_data():
     return load_data()
@@ -85,8 +83,6 @@ l_temp = int(machine_type == "L")
 m_temp = int(machine_type == "M")
 
 if st.button("Predict machine failure"):
-
-    # Keep the same feature names and order as training
     input_data = pd.DataFrame([{
         "Air temperature [K]": air_temp,
         "Process temperature [K]": process_temp,
@@ -97,8 +93,6 @@ if st.button("Predict machine failure"):
         "Type_L": l_temp,
         "Type_M": m_temp
     }])
-
-    # Reorder according to training features
     input_data = input_data[x_reg.columns]
 
     prediction = int(model.predict(input_data)[0])
