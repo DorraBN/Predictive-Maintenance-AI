@@ -1,0 +1,2 @@
+C:\Users\dorra\anaconda3\python.exe train_models.py
+C:\Users\dorra\anaconda3\python.exe -m streamlit run app.py
